@@ -129,11 +129,12 @@ export default class MyPlugin extends Plugin {
 
         const now = moment();
         const drawingFileName = `rM drawing ${now.format("YYYY-MM-DD-HH.mm.ss")}.png`;
-        const absOutputFolderPath = adapter.getFullRealPath(this.settings.outputPath);
+        //const absOutputFolderPath = adapter.getFullRealPath(this.settings.outputPath);
+	const absOutputFolderPath = '/mnt/c/Users/thatf/OneDrive/Documents/Purdue Classes/AAE 352/Structural Analysis/remarkable';
         const drawingFilePath = path.join(absOutputFolderPath, drawingFileName);
 
-        // let args = ['-o', drawingFilePath, '-s', rmAddress];
-	let args = ['-o', '/mnt/c/Users/thatf/OneDrive/Documents/Purdue Classes/AAE 352/Structural Analysis/remarkable', '-s', rmAddress];
+        //let args = ['-o', drawingFilePath, '-s', rmAddress];
+	let args = ['-o', drawingFilePath, '-s', rmAddress];
         if(landscape) {
             args = args.concat(['-l']);
         }
