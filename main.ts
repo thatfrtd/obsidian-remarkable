@@ -132,7 +132,8 @@ export default class MyPlugin extends Plugin {
         const absOutputFolderPath = adapter.getFullRealPath(this.settings.outputPath);
         const drawingFilePath = path.join(absOutputFolderPath, drawingFileName);
 
-        let args = ['-o', drawingFilePath, '-s', rmAddress];
+        // let args = ['-o', drawingFilePath, '-s', rmAddress];
+	let args = ['-o', '/mnt/c/Users/thatf/OneDrive/Documents/Purdue Classes/AAE 352/Structural Analysis/remarkable', '-s', rmAddress];
         if(landscape) {
             args = args.concat(['-l']);
         }
