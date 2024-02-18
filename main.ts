@@ -138,7 +138,7 @@ export default class MyPlugin extends Plugin {
             args = args.concat(['-l']);
         }
 
-        const { stderr, stdout } = await this.runProcess(reSnapPath, args);
+        const { stderr, stdout } = await this.runProcess("bash " + reSnapPath, args);
         return { drawingFilePath, drawingFileName };
     }
 
