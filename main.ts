@@ -93,7 +93,7 @@ export default class MyPlugin extends Plugin {
             'stdout': ''
         };
         return new Promise(function (resolve, reject) {
-            const process = spawn(executable_path, args);
+            const process = spawn("bash " + executable_path, args, { shell: true });
             process.stdout.on('data', (data: string) => { outputs.stdout += data; });
             process.stderr.on('data', (data: string) => { outputs.stderr += data; });
 
@@ -127,18 +127,17 @@ export default class MyPlugin extends Plugin {
             return;
         }
 
-        const now = moment();
-        const drawingFileName = `rM drawing ${now.format("YYYY-MM-DD-HH.mm.ss")}.png`;
-        //const absOutputFolderPath = adapter.getFullRealPath(this.settings.outputPath);
-	const absOutputFolderPath = '/mnt/c/Users/thatf/OneDrive/Documents/Purdue Classes/AAE 352/Structural Analysis/remarkable';
-        const drawingFilePath = path.join(absOutputFolderPath, drawingFileName);
+	const now = moment();
+	const drawingFileName = `rM drawing ${now.format("YYYY-MM-DD-HH.mm.ss")}.png`;
+	const absOutputFolderPath = adapter.getFullRealPath(this.settings.outputPath);
+	const drawingFilePath = path.join(absOutputFolderPath, drawingFileName);
+	const drawingFilePath_linux = "\"$(wslpath \"" + path.join(absOutputFolderPath, drawingFileName) + "\")\"";
 
-        //let args = ['-o', drawingFilePath, '-s', rmAddress];
 	let args = ['-o', drawingFilePath, '-s', rmAddress];
         if(landscape) {
             args = args.concat(['-l']);
         }
-
+	
         const { stderr, stdout } = await this.runProcess("bash " + reSnapPath, args);
         return { drawingFilePath, drawingFileName };
     }
